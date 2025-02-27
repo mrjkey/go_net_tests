@@ -22,6 +22,27 @@ func main() {
 	reportInterval := flag.Int("report", 1, "Reporting interval in seconds")
 	flag.Parse()
 
+	// List all available interfaces
+	devices, err := pcap.FindAllDevs()
+	if err != nil {
+		log.Fatalf("Failed to find devices: %v", err)
+	}
+
+	if len(devices) == 0 {
+		log.Fatal("No devices found.")
+	}
+
+	fmt.Println("Available devices:")
+	for _, device := range devices {
+		fmt.Printf("Name: %s\n", device.Name)
+		fmt.Printf("Description: %s\n", device.Description)
+		// fmt.Println("Addresses:")
+		// for _, address := range device.Addresses {
+		// 	fmt.Printf("  IP: %s, Netmask: %s\n", address.IP, address.Netmask)
+		// }
+		fmt.Println("-----------------------------------")
+	}
+
 	// List all available interfaces if none specified
 	if *interfaceName == "" {
 		devices, err := pcap.FindAllDevs()
