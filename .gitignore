@@ -1,2 +1,12 @@
-./udp_server/udp_server
-./udp_client/udp_client
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Output of the go coverage tool
+*.out
+
+udp_server/udp_server
+udp_client/udp_client
